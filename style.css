@@ -752,13 +752,13 @@ body.modal-open {
 }
 
 /* Rubriker */
-.cv-section h3 {
+.cv-section h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 1.8rem;
 }
 
-.cv-section h4 {
+.cv-section h3 {
     color: #444;
     margin-bottom: 10px;
     font-size: 1.2rem;
