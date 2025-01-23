@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om mig</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header id="header-container"></header>
+    <!--Gemensamma header, som läggs till dynamiskt via JavaScript.-->
+    
+    <main>
+       <section class = "tech-section" >
+
+            <h2 class="tech-title"> Mina kunskaper</h2>
+
+            <section class="search-section">
+                <form id="search-form" onsubmit="handleSearch(event)">
+                    <label for="tech-search">Sök bland mina kunskaper:</label>
+                    <input type="text" id="tech-search" placeholder="Sök..." minlength="2">
+                    <button type="submit">Sök</button>
+                </form>
+            </section>
+
+            <section class="tech-container">
+
+                <article class="tech-item">
+                    <!-- Java Mini-artikel -->
+                    <h3>Java</h3>
+                    <img src="Bilder/Java.jpg" alt="Java">
+                    <p>Läs mer om mina kunskaper inom Java.</p>
+                    <button class="tech-btn" onclick="openModal('javaModal')">Visa/Dölj</button>
+                </article>
+
+                <!-- Databaser Mini-artikel -->
+                <article class="tech-item">
+                    <h3>Databaser</h3>
+                    <img src="Bilder/Databaser.jpg" alt="Databaser">
+                    <p>Läs mer om mina kunskaper inom Databaser.</p>
+                    <button class="tech-btn" onclick="openModal('dbModal')">Visa/Dölj</button>
+                </article>
+
+                <!-- HTML Mini-artikel -->
+                <article class="tech-item">
+                    <h3>HTML</h3>
+                    <img src="Bilder/HTML5.png" alt="HTML">
+                    <p>Läs mer om mina kunskaper inom HTML.</p>
+                    <button class="tech-btn" onclick="openModal('htmlModal')">Visa/Dölj</button>
+                </article>
+
+                <!-- CSS Mini-artikel -->
+                <article class="tech-item">
+                    <h3>CSS</h3>
+                    <img src="Bilder/CSS3.png" alt="CSS">
+                    <p>Läs mer om mina kunskaper inom CSS.</p>
+                    <button class="tech-btn" onclick="openModal('cssModal')">Visa/Dölj</button>
+                </article>
+
+                <!-- JavaScript Mini-artikel -->
+                <article class="tech-item">
+                    <h3>JavaScript</h3>
+                    <img src="Bilder/JavaScript.png" alt="Javascript">
+                    <p>Läs mer om mina kunskaper inom JavaScript.</p>
+                    <button class="tech-btn" onclick="openModal('jsModal')">Visa/Dölj</button>
+                </article>
+            </section>
+
+            <section class="modal-container">
+                <!-- Java-->
+                <article id="javaModal" class="modal">
+                    <section class="modal-content">
+                        <button class="close" onclick="closeModal('javaModal')" aria-label="Stäng">&times;</button>
+                        <header>
+                            <h3>Java</h3>
+                            <img src="Bilder/Java.jpg" alt="Java">
+                        </header>
+
+                        <section class="modal-text">
+                            <p>I min utbildning har jag utvecklat starka kunskaper inom flera Java-områden:</p>
+
+                            <section>
+
+                                <h4>Core Java:</h4>
+                                <ul>
+                                    <li>Objektorienterad programmering där jag arbetat med arv, polymorfism och inkapsling för att skapa välstrukturerad kod</li>
+                                    <li>Effektiv datahantering med Collections Framework för att hantera dynamiska datastrukturer</li>
+                                    <li>Modern Java med Stream API och Lambda-uttryck för effektiv databearbetning</li>
+                                    <li>Robust felhantering med Exception handling</li>           
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4> Testing:</h4>
+                                <ul>
+                                    <li>Enhetstestning med JUnit för att säkerställa kodkvalitet</li>
+                                    <li>Automatisering av byggprocesser och dependency management</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4> Build Tools:</h4>
+                                <ul>
+                                    <li>Maven för att hantera projektberoenden och bygga applikationer</li>
+                                    <li>Testdriven utveckling (TDD) för att skapa pålitlig och underhållbar kod</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4> Spring Framework:</h4>
+                                <ul>
+                                    <li>Utveckling med Spring Boot för moderna webbapplikationer</li>
+                                    <li>Dependency Injection för att skapa löst kopplade komponenter</li>
+                                </ul>
+                            </section>
+                            
+                        </section>
+                    </section>
+                </article>
+                
+                <!-- Databaser-->
+                <article id="dbModal" class="modal">
+                    <section class="modal-content">
+                        <button class="close" onclick="closeModal('dbModal')" aria-label="Stäng">&times;</button>
+                        <header>
+                            <h3>Databaser</h3>
+                            <img src="Bilder/Databaser.jpg" alt="Databaser">
+                        </header>
+                        
+                        <section class="modal-text">
+                            <p>Min erfarenhet inom databaser omfattar flera viktiga områden:</p>
+
+                            <section>
+                                <h4>SQL:</h4>
+                                <ul>
+                                    <li>Skapande av komplexa queries för dataanalys och rapportering</li>
+                                    <li>Optimering av databasförfrågningar för bättre prestanda</li>
+                                    <li>Hantering av transaktioner och data integrity</li>                                       
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>HSQLDB:</h4>
+                                <ul>
+                                    <li>Utveckling av inbäddade databaser för Java-applikationer</li>
+                                    <li>Integration mellan Java och HSQLDB</li>
+                                    <li>Minnesoptimerade databaslösningar</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Database Design:</h4>
+                                <ul>
+                                    <li>ER-modellering och normalisering</li>
+                                    <li>Designa effektiva databasscheman</li>
+                                    <li>Optimering av databasstruktur</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>JDBC:</h4>
+                                <ul>
+                                    <li>Integration mellan Java och relationsdatabaser</li>
+                                    <li>Hantering av databasanslutningar och connection pools</li>
+                                    <li>Implementering av DAO-mönster</li>
+                                </ul>
+                            </section>
+                            
+                        </section>
+                    </section>
+                </article>
+
+                <!-- HTML-->
+                <article id="htmlModal" class="modal">
+                    <section class="modal-content">
+                        <button class="close" onclick="closeModal('htmlModal')" aria-label="Stäng">&times;</button>
+                        <header>
+                            <h3>HTML</h3>
+                            <img src="Bilder/HTML5.png" alt="HTML">
+                        </header>
+                        
+                        <section class="modal-text">
+                            <p>Mina HTML5-kunskaper täcker moderna webbstandarder:</p>
+
+                            <section>
+                                <h4>HTML5 Semantics:</h4>
+                                <ul>
+                                    <li>Användning av semantiska element för bättre struktur och tillgänglighet</li>  
+                                    <li>SEO-optimerad markup</li>    
+                                    <li>Moderna HTML5-funktioner som canvas och multimedia</li>                                
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Formulärhantering:</h4>
+                                <ul>
+                                    <li>Validering och datatyper</li>
+                                    <li>Tillgängliga formulär</li>
+                                    <li>Interaktiva formulärelement</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Bästa praxis:</h4>
+                                <ul>
+                                    <li>Webbstandarder och validering</li>
+                                    <li>Cross-browser kompatibilitet</li>
+                                    <li>Responsiv design-principer</li>
+                                </ul>
+                            </section>                            
+                        </section>
+                    </section>
+                </article>
+
+                <!-- CSS-->
+                <article id="cssModal" class="modal">
+                    <section class="modal-content">
+                        <button class="close" onclick="closeModal('cssModal')" aria-label="Stäng">&times;</button>
+                        <header>
+                            <h3>CSS</h3>
+                            <img src="Bilder/CSS3.png" alt="CSS">
+                        </header>
+                        
+                        <section class="modal-text">
+                            <p>Min CSS-kompetens inkluderar moderna layouttekniker:</p>
+
+                            <section>
+                                <h4>Flexbox/Grid:</h4>
+                                <ul>
+                                    <li>Skapande av responsiva layouts med Flexbox</li>
+                                    <li>Avancerade grid-system för komplexa layouts</li>
+                                    <li>Kombinera Flexbox och Grid för optimala lösningar</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Responsiv Design:</h4>
+                                <ul>
+                                    <li>Mobile-first approach</li>
+                                    <li>Media queries för olika skärmstorlekar</li>
+                                    <li>Flexibla bilder och media</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Moderna CSS-tekniker:</h4>
+                                <ul>
+                                    <li>CSS-variabler för konsistent styling</li>
+                                    <li>Transitions och animationer</li>
+                                    <li>Preprocessorer och postprocessorer</li>
+                                </ul>
+                            </section>                            
+                        </section>
+                    </section>
+                </article>
+
+                <!-- Javascript-->
+                <article id="jsModal" class="modal">
+                    <section class="modal-content">
+                        <button class="close" onclick="closeModal('cssModal')" aria-label="Stäng">&times;</button>
+                        <header>
+                            <h3>JavaScript</h3>
+                            <img src="Bilder/JavaScript.png" alt="Javascript">
+                        </header>
+                        
+                        <section class="modal-text">
+                            <p>Min JavaScript-kunskap omfattar moderna utvecklingstekniker:</p>
+
+                            <section>
+                                <h4>DOM Manipulation:</h4>
+                                <ul>
+                                    <li>Dynamisk innehållsuppdatering</li>
+                                    <li>Event handling och delegation</li>
+                                    <li>Traversering och modifiering av DOM-trädet</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Modern JavaScript:</h4>
+                                <ul>
+                                    <li>ES6+ features</li>
+                                    <li>Asynkron programmering med Promises och async/await</li>
+                                    <li>Modulär JavaScript-utveckling</li>
+
+                                </ul>
+                            </section>
+
+                            <section>
+                                <h4>Responsiv Design:</h4>
+                                <ul>
+                                    <li>Interaktiva användargränssnitt</li>
+                                    <li>Mobil-optimerade event handlers</li>
+                                    <li>Performance-optimering</li>
+                                </ul>
+                            </section>                            
+                        </section>
+                    </section>
+                </article>
+            </section>
+
+       </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Gustav Nyberg. Alla rättigheter förbehållna.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,915 @@
+/* ===================== */
+/* HUVUDHEADER */
+/* ===================== */
+
+/* Header: Flexbox för layout */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 0;
+    z-index: 1000; /* Bestämmer vilket lager elementet ligger i (högre nummer = framför) */
+    gap: 30px; /* Minska gap om det behövs */
+}
+
+/* LOGOTYPENS STORLEK */
+.logo img {
+    width: 100px;                    /* Fast bredd på logotypen*/
+    height: auto;                    /* Höjden anpassas proportionerligt */
+}
+
+.logo {
+    flex: 0 0 auto;                  /* Förhindrar att logon krymper/växer */
+}
+
+/* NAVIGATIONSMENY */
+
+.nav-menu {
+    flex: 1; /* Tar upp återstående utrymme */
+    display: flex; /* Aktiverar flexbox för menyn */
+    justify-content: center; /* Ändra från center till flex-start */
+    margin-right: auto; /* Trycker sökrutan åt höger */
+}
+
+.nav-menu ul {
+    display: flex; /* Gör menylistan horisontell */
+    list-style: none; /* Tar bort listpunkter */
+    margin: 0; /*Tar bort standardmarginaler */
+    padding: 0; /*Tar bort standardpadding */
+    justify-content: center; /*Centrerar menyalternativen */
+    flex-wrap: nowrap; /*Förhindrar radbrytning av menyalternativ */
+    gap: 15px; /* Mellanrum mellan menyalternativ */
+}
+
+.nav-menu li {
+    margin: 0 10px; /* Marginaler på båda sidor av varje menyalternativ */
+}
+
+/* Snyggare hover-effekt för menyalternativ */
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 16px;
+    position: relative; /* För underline-effekten */
+    transition: color 0.3s ease; /*Mjuk övergång vid färgändring */
+    font-size: 20px; 
+    white-space: nowrap;
+}
+
+/* Underline hover-effekt */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #333;
+    transition: all 0.3s ease; /*Mjuk övergång vid färgändring */
+    transform: translateX(-50%); /*Centrerar exakt */
+}
+
+.nav-menu a:hover {
+    color: #333; /* Behåll textfärgen */
+    background-color: transparent; /* Ta bort bakgrundsfärgen */
+}
+
+.nav-menu a:hover::after {
+    width: 100%; /* Underline växer från mitten */
+}
+
+/* Mobilanpassad version */
+
+@media (max-width: 800px) {
+    .hamburger {
+        display: flex;  /* Visar hamburger-menyn */
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        display: none;
+    }
+
+    .nav-menu.active {
+        display: block; /*Syns som block */
+    }
+
+    .nav-menu ul {
+        flex-direction: column; /*Stapla dom vertikalt */
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .nav-menu li {
+        margin: 10px 0; /*Mellanrum mellan länkar */ 
+    }
+
+    .search-icon {
+        display: block;
+    }
+}
+
+
+
+
+/* ===================== */
+/*  STARTSIDA (index.html) */
+/* ===================== */
+
+/* Hero section styling */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Ändrar till fullscreen height */
+    overflow: hidden;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Slides */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Detta ser till att bilden täcker hela containern */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: block; /* För att undvika osynlighet från början*/
+}
+
+.slide.active {
+    opacity: 1; /*helt synlig*/
+}
+
+/* Welcome text container - justera position */
+.welcome-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*för perfekt centrering*/
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    z-index: 2; /* Ser till att texten ligger ovanför bilderna */
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #797152;
+    color: white;             
+    text-decoration: none;     /* Tar bort underline från länken */
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #cbbb80;  
+}
+
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none; /*Tar bort alla kanter/ramar runt elementet*/
+    cursor: pointer; /*Ändrar muspekaren till en hand när man hovrar över elementet*/
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: #333;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+
+/* Mobilanpassad version */
+@media (max-width: 800px) {
+    .hero-section {
+        height: 50vh; /* Mindre höjd på mobil */
+    }
+
+    .welcome-text {
+        width: 35%;
+        padding: 15px;
+    }
+
+    .welcome-text h1 {
+        font-size: 22px;
+    }
+
+    .welcome-text p {
+        font-size: 16px;
+    }
+
+    .slide {
+        object-fit: cover;
+        object-position: center 20%; /* Justerar bildens fokuspunkt */
+    }
+
+    .slideshow-controls {
+        bottom: 80px; /* Flyttar upp kontrollerna så de inte hamnar i botten */
+    }
+}
+
+
+@media (max-width: 800px) {
+    .hamburger {
+        display: flex;  /* Visar hamburger-knappen */
+    }
+
+    .nav-menu {
+        display: none;  /* Dölj menyn från början */
+        position: absolute;
+        top: 100%;  /* Placera under headern */
+        left: 0;
+        width: 100%;
+        background: #f8f9fa;
+        padding: 20px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: block;  /* Visa menyn när active-klassen läggs till */
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .nav-menu li {
+        margin: 15px 0;
+    }
+}
+
+/* Animation för hamburger-knappen blir till kryss för att tsänga hamburgermeny */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+/* ===================== */
+/*  Om mig-sidan (om-mig.html) */
+/* ===================== */
+
+.about-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-header {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Intro-sektion med bild och presentation */
+.about-intro {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-intro img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Gemensam styling för sektioner */
+.about-experience,
+.about-goals,
+.about-interests {
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Rubriker i sektionerna */
+.about-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+    .about-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-intro img {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .about-header {
+        font-size: 2rem;
+    }
+
+    .about-section h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* P-tag-styling */
+.about-section p {
+    line-height: 1.6; /*Radavstånd (1.6 gånger textstorleken)*/
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.about-section section {
+    transition: transform 0.3s ease; /*Mjuk animation för hover-effekten*/
+}
+
+.about-section section:hover {
+    transform: translateY(-5px); /*Lyfter sektionen 5px uppåt vid hover*/
+}
+
+
+
+/* ===================== /
+/  Teknik-sidan (teknik.html) /
+/ ===================== */
+
+
+.tech-title {
+    font-size: 35px;
+}
+
+.tech-section p[id$="-text"] {
+    display: none;
+}
+
+.tech-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.tech-item {
+    width: 230px;
+    height: 280px;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tech-container.has-expanded::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+/* Expanderad box */
+.tech-item.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*för perfekt centrering*/
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto; /*Lägger till vertikal scrollbar om innehållet är större än behållaren auto betyder att scrollbar bara visas vid behov*/
+    z-index: 1000;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    pointer-events: auto;
+}
+
+/* Bilder i boxarna */
+.tech-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/*Sammarbetar med js för visa/dölj*/
+/* Initialt tillstånd - dold med transition */
+.tech-item p[id$="-text"] {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+/* Synligt tillstånd */
+.tech-item p[id$="-text"].visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Effekter på övriga boxar när en är expanderad */
+.tech-container.has-expanded .tech-item:not(.expanded) {
+    filter: blur(2px);
+    opacity: 0.7;
+}
+
+/* Hover effekt */
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Knapp styling */
+.toggle-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #797152;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #cbbb80;
+}
+
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);  /* Börjar transparent */
+    z-index: 1000;
+    transition: background-color 0.3s ease;  /* Mjuk övergång för bakgrunden */
+}
+
+.modal.show {
+    display: block;
+    background-color: rgba(0,0,0,0.5);  /* Slutlig opacity */
+}
+
+/* Modal innehåll */
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1001;
+    opacity: 0;  /* Börjar osynlig */
+    transform: translateY(-20px);  /* Börjar lite ovanför */
+    transition: opacity 0.3s ease, transform 0.3s ease;  /* Mjuk övergång */
+}
+
+.modal.show .modal-content {
+    opacity: 1;  /* Blir synlig */
+    transform: translateY(0);  /* Flyttas till rätt position */
+}
+
+/* Styling för bilden i modalen */
+.modal-content img {
+    width: 100px;  /* eller den storlek du önskar */
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .modal-content img {
+        width: 80px;  /* Mindre storlek på mobiler */
+    }
+}
+
+/* Stäng-knapp */
+.close {
+    position: sticky;
+    float: right;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 5px 10px;
+}
+
+.close:hover {
+    color: #666;
+}
+
+/* Modal text styling */
+.modal-text {
+    margin-top: 20px;
+}
+
+.modal-text section {
+    margin-bottom: 20px;
+}
+
+.modal-text h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-text ul {
+    padding-left: 20px;
+}
+
+.modal-text li {
+    margin-bottom: 5px;
+}
+
+/* När modalen är öppen */
+body.modal-open {
+    overflow: hidden; /* Förhindrar scrollning på bakgrunden */
+}
+
+/* Sök och filtreringsfunktion */
+
+.highlight {
+    background-color: #ffeb3b;
+    padding: 0 2px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+#search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-section label {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+#tech-search {
+    padding: 8px 15px;
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#tech-search:focus {
+    border-color: #797152;
+    outline: none;
+}
+
+/* Styling för sökresultat */
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.search-modal-content {
+    width: calc(50% - 20px); /* Två kolumner med gap */
+    min-width: 300px;
+}
+
+/* Söksektionen */
+.search-section {
+    position: sticky;
+    top: 80px;
+    z-index: 1001; /*Säkerställer att den ligger över annat innehåll*/
+    background: white; 
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /*skugga*/
+    max-width: 280px;
+    border-radius: 10px;
+}
+
+#search-form {
+    display: flex; /*Flexbox för att rada upp sökfält och knapp*/
+    justify-content: center;
+    gap: 4px;
+    align-items: center;
+    font-size: 14px;
+    
+}
+
+#tech-search {
+    padding: 8px 15px;
+    width: 70px;
+    border: 2px solid #ccc; /*Grå kant runt sökfältet*/
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#search-form button {
+    padding: 5px 16px;
+    background-color: #797152;
+    color: white;
+    border: none; /*Tar bort standardkant*/
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#search-form button:hover {
+    background-color: #cbbb80;
+}
+
+/* Sökresultat */
+.search-results {
+    display: flex;
+    flex-wrap: wrap; /*Tillåter radbrytning av resultat*/
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.search-modal-content {
+    width: calc(50% - 20px);
+    min-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .search-modal-content {
+        width: 100%; /*full bredd på mobil*/
+    }
+
+    #tech-search {
+        width: 80%; /*Sökfältet tar upp mer plats*/
+    }
+}
+
+/* styling för modaler */
+@media (max-width: 1500px) { 
+    
+     /* Döljer sökrutan när en modal är öppen */ 
+    body.modal-open .search-section {
+        display: none;
+    }
+
+}
+
+
+
+/* ===================== */
+/*  CV-sidan (cv.html) */
+/* ===================== */
+
+.cv-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling för varje sektion */
+.cv-section {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox layout för CV items */
+.cv-section article {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cv-section article:hover {
+    transform: translateY(-5px);
+}
+
+/* Rubriker */
+.cv-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.cv-section h4 {
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+/* Paragraf-styling */
+.cv-section p {
+    color: #666;
+    margin: 5px 0;
+}
+
+/* PDF-visning */
+.cv-download {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.cv-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #797152;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cv-link:hover {
+    background-color: #cbbb80;
+}
+
+.pdf-thumbnail {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+    .cv-container {
+        padding: 10px;
+    }
+
+    .cv-section {
+        padding: 15px;
+    }
+
+    .pdf-thumbnail {
+        height: 300px;
+    }
+}
+
+
+
+/* ===================== */
+/*  Kontakt-sidan (kontakt.html) */
+/* ===================== */
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Kontaktinformation */
+.contact-info {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details {
+    list-style: none; /* Ta bort listpunkter */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(10px); /*Flyttar höger 10px vid hover*/
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* Sociala medier länkar */
+.social-media {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px); /*Flyttar upp 5px vid hover*/
+}
+
+.social-link img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
